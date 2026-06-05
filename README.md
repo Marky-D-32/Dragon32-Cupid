@@ -1,7 +1,7 @@
 This is a 6809 assembly language one player arcade game for the Dragon 32.  The object of the game is to fire Cupids arrow at the moving target, gaining as many points as posisble while avoiding your opponents.  
 Press ENTER to fire the arrow, the UP arrow key controls Cupid on levels 2 and 3.
 
-The program was written by Steve Cathercole and originally published in the March 1986 edition of Dragon User Magazine.
+The program was written by Steve Gathercole and originally published in the March 1986 edition of Dragon User Magazine.
 
 | File | Description |
 | --- | --- |
