@@ -1,5 +1,5 @@
-SET XROARPATH=C:\Users\Marky\Documents\Emulators\Dragon32\apps\xroar-1.6.3-w64
-SET ASMPATH=C:\Users\Marky\Documents\Emulators\Dragon32\apps\asm6809-2.12-w64
+SET XROARPATH=C:\Users\_user_\Documents\Emulators\Dragon32\apps\xroar-1.6.3-w64
+SET ASMPATH=C:\Users\_user_\Documents\Emulators\Dragon32\apps\asm6809-2.12-w64
 
 SET path=%XROARPATH%;%ASMPATH%
 
