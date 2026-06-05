@@ -543,22 +543,22 @@ FireHitSound    PSHS  A,B,X,Y
                 ORA   #$08
                 STA   $FF23
                 LDX   #$0001
-                LDA   #$FD
+FHS_1           LDA   #$FD
                 STA   $FF20
-                BSR   $7180
+                BSR   FHS_2
                 CLR   $FF20
-                BSR   $7180
+                BSR   FHS_2
                 LEAX  1,X
                 CMPX  #$003F
-                BCS   $7163
+                BCS   FHS_1
                 LDA   $FF23
                 ANDA  #$F7
                 STA   $FF23
                 PULS  A,B,X,Y,PC
 
-                TFR   X,Y
-                LEAY  -1,Y
-                BNE   $7182
+FHS_2           TFR   X,Y
+FHS_3           LEAY  -1,Y
+                BNE   FHS_3
                 RTS
 
                 ;******************
@@ -571,9 +571,9 @@ EndLevelSound   PSHS  A,B,X,Y
                 LDX   #$0001
 ELS_1           LDA   #$FD
                 STA   $FF20
-                BSR   $71B1
+                BSR   ELS_2
                 CLR   $FF20
-                BSR   $71B1
+                BSR   ELS_2
                 LEAX  1,X
                 CMPX  #$00FE
                 BCS   ELS_1
@@ -582,9 +582,9 @@ ELS_1           LDA   #$FD
                 STA   $FF23
                 PULS  A,B,X,Y,PC
 
-                TFR   X,Y
-ELS_2           LEAY  -1,Y
-                BHI   ELS_2
+ELS_2           TFR   X,Y
+ELS_3           LEAY  -1,Y
+                BHI   ELS_3
                 RTS
 
                 ;************************************
@@ -592,7 +592,7 @@ ELS_2           LEAY  -1,Y
                 ;************************************
 Draw1ByteGrp    PSHS  A,B,X,Y
                 STA   ,-S                   ;Store height of graphic
-D1BG_1          LDA   ,Y+                   ;Get graphic 
+D1BG_1          LDA   ,Y+                   ;Get graphic
                 STA   ,X+                   ;Draw it on screen
                 ABX                         ;Repoint to next position
                 DEC   ,S                    ;Decrease height count
@@ -621,7 +621,7 @@ Draw3ByteGrp    PSHS  A,B,X,Y,U
 D3BG_1          LDU   ,Y++                  ;Get graphic (2 bytes)
                 STU   ,X++                  ;Draw it on screen
                 LDA   ,Y+                   ;Get graphic (1 byte)
-                STA   ,X+                   ;Draw it on screen  
+                STA   ,X+                   ;Draw it on screen
                 ABX                         ;Repoint to next position
                 DEC   ,S                    ;Decrease height Count
                 BNE   D3BG_1                ;Not finsihed
@@ -632,7 +632,7 @@ D3BG_1          LDU   ,Y++                  ;Get graphic (2 bytes)
                 ;Delay - slow things down
                 ;************************
 SlowDown        PSHS  A,B,X,Y
-                LDX   GameSpeed             ;Get game speed setting   
+                LDX   GameSpeed             ;Get game speed setting
 SlowDown_1      LEAX  -1,X                  ;count down
                 CMPX  #$0000                ;reached 0?
                 BNE   SlowDown_1            ;No - repeat
@@ -1479,11 +1479,11 @@ FlashHighScore  PSHS  A,B,X,Y
                 LDX   ScoreLastGame         ;Get Position that last score was written to
                 LDB   #$0A                  ;Text to flash has 10 chars
                 LEAX  -3,X                  ;Move 3 chars to left
-FHS_1           LDA   ,X                    ;Get character
+FHSCR_1         LDA   ,X                    ;Get character
                 EORA  #$40                  ;Inverse the character
                 STA   ,X+                   ;Put it back on screen
                 DECB                        ;Reduce Count
-                BNE   FHS_1                 ;Repeat until finished
+                BNE   FHSCR_1               ;Repeat until finished
                 LBSR  EndLevelSound         ;Play Sound
                 PULS  A,B,X,Y,PC            ;Return
 
