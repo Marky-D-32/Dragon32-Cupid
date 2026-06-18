@@ -5,4 +5,4 @@ SET path=%XROARPATH%;%ASMPATH%
 
 asm6809.exe --exec 28000 --dragondos Cupid.asm -o Cupid.bin -l Cupid.lst
 
-xroar.exe -default-machine d32 -rompath %XROARPATH% -run Cupid.bin -cart Alldream cart-desc "Alldream" cart-type rom cart-rom "../../cartridges/AllDream.rom" no-cart-autorun
+xroar.exe -default-machine d32 -rompath %XROARPATH% -run Cupid.bin
